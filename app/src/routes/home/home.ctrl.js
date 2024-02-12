@@ -10,7 +10,7 @@ const output = {
 
 const usrs = {
     id: ["hjkang0107", "hjkang2002", "croma23"],
-    password: ["eric2002@", "eric2002", "ksh106744@"],
+    password: ["1234", "1234", "0107"],
 };
 
 const process = {
