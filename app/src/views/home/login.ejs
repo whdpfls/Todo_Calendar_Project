@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/home/login.css">
     <script src="/js/home/login.js" defer></script>
     <title>Document</title>
 </head>
 <body>
-    <input id="id" type="text" placeholder="아이디">
-    <input id="psword" type="password" placeholder="비밀번호">
-    <button id = "bttn">로그인</button>
+    <div class="wrapper">
+        <form class="form-signin">       
+          <h2 class="form-signin-heading">Todomate 로그인</h2>
+          <input type="text" id="id" class="form-control" name="username" placeholder="아이디" required="" autofocus="" />
+          <input type="password" id="psword" class="form-control" name="password" placeholder="비밀번호" required=""/>      
+          <button id="bttn" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+        </form>
+      </div>
+
 </body>
 </html>
