@@ -10,10 +10,21 @@ class UserStorage {
        const newUsers = fields.reduce((newUsers, field) => {
         if(users.hasOwnProperty(field)) {
             newUsers[field] = users[field];
-        }
+        } 
         return newUsers;
        }, {});
        return newUsers;
+    }
+
+    static getUserInfo(id) { //특정 회원의 정보를 가져온다
+        const users = this.#users;
+        const idx = users.id.indexOf(id);
+        const userKeys = Object.keys(users); // users의 key값만 받아온다.
+        const userInfo = userKeys.reduce((newUser, info) => {
+            newUser[info] = users[info][idx];
+            return newUser;
+        }, {});
+        return userInfo;
     }
 }
 
