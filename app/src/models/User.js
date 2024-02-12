@@ -1,15 +1,16 @@
-const userStorage = require("./UserStorage");
+const UserStorage = require("./UserStorage");
 
 class User {
     constructor(body) {
         this.body = body;
     }
 
-    login() {
-        const id = userStorage.getUserInfo(this.body.id).id;
-        const psword = userStorage.getUserInfo(this.body.id).password;
+    async login() {
+        const client = this.body;
+        const id = (await UserStorage.getUserInfo(client.id)).id; //getuserInfo는 promise기 때문에 시간을 기다려줘야 해서 비동기로 처리
+        const psword = (await UserStorage.getUserInfo(client.id)).password; //getuserInfo는 promise기 때문에 시간을 기다려줘야 해서 비동기로 처리
         if(id) {
-            if(id == this.body.id && psword == this.body.psword) {
+            if(id == client.id && psword == client.psword) {
                 return {success: true};
             }
             return {success: false, msg : "비밀번호가 틀렸습니다."};
@@ -17,9 +18,14 @@ class User {
         return {success: false, msg : "존재하지 않는 아이디입니다."};
     }
 
-    register() {
+    async register() {
         const client = this.body;
-        userStorage.save(client);
+        try{
+            const response = await UserStorage.save(client);    
+            return response;
+        } catch(err) {
+            return {success: false, msg: err};
+        }
     }
 }
 
